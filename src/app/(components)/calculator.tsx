@@ -11,9 +11,9 @@ export function Calculator() {
 
   const add = useMutation(trpc.math.add.mutationOptions());
 
-  useEffect(() => {
+  const handleAdd = () => {
     add.mutate({ a, b });
-  }, [a, b]);
+  };
 
   return (
     <div>
@@ -29,7 +29,8 @@ export function Calculator() {
         onInput={(e) => setB(Number(e.currentTarget.value))}
       />
       <span> = </span>
-      <span>{add.data?.sum ?? 0}</span>
+      <span>{add.data?.sum ?? 0}</span><br />
+      <button onClick={handleAdd}>Add</button>
     </div>
   );
 }
